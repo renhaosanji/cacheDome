@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -182,7 +183,32 @@ public class RestfulController {
 	}	
 	
 	
+	/**  
+	 * @Title: deleteProduct
+	 * @Description: TODO(설명) 상품정보 삭제, 상품번호, 카데고리번호(케시동기화처리)
+	 * @param productVO
+	 * @return
+	 * @author renhs
+	 * @date 2020-07-12 09:48:40 
+	 */  
+	@DeleteMapping("/product")
+	public int deleteProduct(@RequestBody ProductVO productVO) {
+		return productService.deleteProduct(productVO);
+	}	
 	
+	
+	/**  
+	 * @Title: deleteCategory
+	 * @Description: TODO(설명)Category 삭제, 카데고리 아이디
+	 * @param categoryVO
+	 * @return
+	 * @author renhs
+	 * @date 2020-07-12 09:51:18 
+	 */  
+	@DeleteMapping("/category")
+	public int deleteCategory(@RequestBody CategoryVO categoryVO) {
+		return productService.deleteCategory(categoryVO);
+	}	
 	
 	
 }

@@ -46,6 +46,15 @@
 		
 	</update>
 	
+	<delete id="deleteCategory" parameterType="com.example.demo.vo.CategoryVO">
+	
+			delete from
+				category
+			where 
+				category_no = 	#{categoryNo}
+	
+	</delete>
+	
 	
 	
 </mapper>

@@ -83,4 +83,22 @@ public class ProductServiceImpl implements ProductService {
 		return count;
 	}
 
+	@Override
+	public int deleteProduct(ProductVO productVO) {
+		// TODO Auto-generated method stub
+		int count = productDAO.deleteProduct(productVO);
+		CacheManager.clearOnly("p_"+productVO.getProductNo());
+		CacheManager.clearOnly("c_"+productVO.getCategoryNo());
+		return count;
+	}
+
+	@Override
+	public int deleteCategory(CategoryVO categoryVO) {
+		// TODO Auto-generated method stub
+		int count = categoryDAO.deleteCategory(categoryVO);
+		CacheManager.clearOnly("cg");// delete 성공 경우에 캐시 지우기
+		CacheManager.clearOnly("c_"+categoryVO.getCategoryNo());
+		return count;
+	}
+
 }

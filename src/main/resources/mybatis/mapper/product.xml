@@ -73,6 +73,17 @@
 	</update>		
 	
 
+	<delete id="deleteProduct" parameterType="com.example.demo.vo.ProductVO">
+	
+			delete from
+				product
+			where 
+				product_no = 	#{productNo}
+	
+	</delete>
+
+
+
 
 
 </mapper>

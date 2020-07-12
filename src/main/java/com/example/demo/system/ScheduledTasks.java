@@ -26,7 +26,7 @@ public class ScheduledTasks implements SchedulingConfigurer {
 	
 
 	/**
-	 * Eviction  TTL（Time To Live ） 기업 사용 , 일정 시간에 기간 지난한 캐시 삭제 
+	 * Eviction  TTL（Time To Live ） 기업 사용 , 일정 시간에 기간 지난 캐시 삭제 
 	 */
 	@Override
 	public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
