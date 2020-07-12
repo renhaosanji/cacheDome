@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.CategoryDAO">
+     <select id="selectCategory" resultType="com.example.demo.vo.CategoryVO">
+		select 
+		 CATEGORY_NO AS categoryNo
+		,CATEGORY_NAME AS categoryName
+		,PARENT_NO AS parentNo
+		,DEPTH AS depth
+		 from CATEGORY 
+	</select>
+	
+	<insert id="insertCategory" parameterType="com.example.demo.vo.CategoryVO">
+	
+		     <selectKey resultType="int" order="AFTER" keyProperty="categoryNo">
+        			SELECT SCOPE_IDENTITY()
+    		</selectKey>
+		  	
+	
+	
+		 INSERT INTO 
+		   category(	   
+	        category_name
+		   	,parent_no
+		   	,depth	   	
+		   	) 
+		   	VALUES 
+		   	(	   	
+	           #{categoryName}
+		   	   , #{parentNo}
+		   	   , #{depth}
+		   	 )
+	
+	</insert>
+	
+	
+	<update id="updateCategory" parameterType="com.example.demo.vo.CategoryVO">
+	        update 
+	        	category
+	        	SET
+	        		category_name = #{categoryName}
+	        	where 
+	        		 category_no = 	#{categoryNo}
+		
+	</update>
+	
+	
+	
+</mapper>
+

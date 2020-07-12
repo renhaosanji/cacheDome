@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.ProductDAO">
+
+
+    <select id="selectProductNo" parameterType="com.example.demo.vo.ProductVO" resultType="com.example.demo.vo.ProductVO">
+		select 
+		 product_no AS productNo
+		 ,category_no AS categoryNo
+		from product 
+		where category_no = #{categoryNo}		
+	</select>
+
+
+    <select id="selectAllProductInfo" resultType="com.example.demo.vo.ProductVO">
+		select 
+		 product_no AS productNo
+		 ,category_no AS categoryNo
+		 ,brand_name AS brandName
+		 ,product_name as productName
+		 ,product_price as productPrice
+		from product 
+	</select>
+	
+    <select id="selectProductInfo" parameterType="com.example.demo.vo.ProductVO" resultType="com.example.demo.vo.ProductVO">
+		select 
+		 product_no AS productNo
+		 ,category_no AS categoryNo
+		 ,brand_name AS brandName
+		 ,product_name as productName
+		 ,product_price as productPrice
+		from product 
+		where product_no = #{productNo}
+	</select>	
+	
+	
+	<insert id="insertProduct" parameterType="com.example.demo.vo.ProductVO">
+	
+		     <selectKey resultType="int" order="AFTER" keyProperty="productNo">
+        			SELECT SCOPE_IDENTITY()
+    		</selectKey>
+		  
+		  
+		  
+		  INSERT INTO 
+		   product(
+		   	 category_no  
+	        ,product_name
+		   	,brand_name
+		   	,product_price	   	
+		   	) 
+		   	VALUES 
+		   	(	   	
+	             #{categoryNo}
+		   	   , #{brandName}
+		   	   , #{productName}
+		   	   , #{productPrice}
+		   	 )
+	
+	</insert>
+	
+	
+	<update id="updateProduct" parameterType="com.example.demo.vo.ProductVO">
+	
+		  update product 
+		   set
+		   	 product_name = #{productName}
+		   	,product_price = #{productPrice}	   	
+		   	where product_no = #{productNo}
+	
+	</update>		
+	
+
+
+
+</mapper>
